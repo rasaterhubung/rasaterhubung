@@ -1,0 +1,1299 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rasa Terhubung</title>
+    <meta
+      property="og:image"
+      content="https://cdn.scalev.id/uploads/1779350425/IM44jJftpgnppIMk8-PE1A/1779350424692-thumbnail.webp"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://cdn.scalev.id/uploads/1779350425/IM44jJftpgnppIMk8-PE1A/1779350424692-thumbnail.webp"
+    />
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1664848391205429');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1664848391205429&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+    <style>
+/**
+ * Reusable design system — pure CSS (no Tailwind).
+ * Edit tokens in :root to reskin the funnel.
+ */
+ :root {
+    --color-bg: #000000;
+    --color-surface: #1f1f1f;
+    --color-border: #1f1f1f;
+    --color-border-soft: #262626;
+    --color-text: #d4d4d4;
+    --color-heading: #ffffff;
+    --color-primary: #E10600;
+    --color-primary-dark: #ef8f00;
+    --color-primary-soft-bg: #fef2f2;
+    --color-primary-soft-text: #ff9900;
+    --color-accent: #fdba74;
+    --color-success: #22c55e;
+    --color-success-dark: #15803d;
+    --color-gift-muted: #525252;
+    --color-badge: rgba(21, 128, 61, 0.4);
+    --color-track: rgba(255, 255, 255, 0.3);
+    --color-banner-bg: #fefce8;
+    --color-on-light: #000000;
+    --radius-sm: 0.3rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-full: 9999px;
+    --font-light: 300;
+    --font-medium: 500;
+    --font-bold: 700;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --max-content: 28rem;
+    --header-main-height: 3rem;
+    --header-progress-block: 0.75rem;
+    --header-height: var(--header-main-height);
+    --z-header: 100;
+    --transition: transform 0.2s ease, box-shadow 0.2s ease;
+    --section-enter-duration: 1s;
+    --section-enter-stagger: 0.05s;
+    --shadow-cta: 0 4px 0 var(--color-primary-dark);
+    --shadow-cta-green: 0 4px 0 var(--color-success-dark);
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+      Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+    padding: var(--space-4);
+    padding-top: calc(var(--header-height) + var(--space-4));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  body.has-header-progress {
+    padding-top: calc(
+      var(--header-main-height) + var(--header-progress-block) + var(--space-4)
+    );
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+  
+  @keyframes section-item-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes wiggle {
+    0%,
+    85%,
+    100% {
+      transform: translateX(0) skewX(0deg);
+    }
+    88% {
+      transform: translateX(-6px) skewX(-4deg);
+    }
+    90% {
+      transform: translateX(6px) skewX(4deg);
+    }
+    92% {
+      transform: translateX(-6px) skewX(-1deg);
+    }
+    94% {
+      transform: translateX(6px) skewX(1deg);
+    }
+    96% {
+      transform: translateX(-2px);
+    }
+    98% {
+      transform: translateX(2px);
+    }
+  }
+  
+  .cta-wiggle {
+    display: inline-block;
+    width: 100%;
+    animation: wiggle 5s ease-in-out infinite;
+  }
+  
+  /* ——— Layout ——— */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    z-index: var(--z-header);
+  }
+
+  .site-header__main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--header-main-height);
+    padding: 0 var(--space-6);
+  }
+
+  .site-header__logo {
+    height: 1.5rem;
+    width: auto;
+    color: var(--color-heading);
+    font-weight: var(--font-medium);
+  }
+
+  .site-header__logo span {
+    background-color: var(--color-primary);
+    padding: 0.25rem 0.5rem;
+    color: var(--color-on-light);
+    border-radius: var(--radius-sm);
+  }
+
+  .site-header__progress[hidden] {
+    display: none;
+  }
+
+  .site-header__progress-track {
+    height: 0.15rem;
+    background: var(--color-track);
+    overflow: hidden;
+  }
+
+  .site-header__progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+    background: var(--color-primary);
+    transition: width 0.25s ease;
+  }
+  
+  .section {
+    width: 100%;
+    max-width: var(--max-content);
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--space-6) var(--space-4);
+    border-radius: var(--radius-sm);
+  }
+
+  .section--enter > * {
+    animation: section-item-in var(--section-enter-duration)
+      cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .section--enter > *:nth-child(1) {
+    animation-delay: calc(var(--section-enter-stagger) * 1);
+  }
+
+  .section--enter > *:nth-child(2) {
+    animation-delay: calc(var(--section-enter-stagger) * 2);
+  }
+
+  .section--enter > *:nth-child(3) {
+    animation-delay: calc(var(--section-enter-stagger) * 3);
+  }
+
+  .section--enter > *:nth-child(4) {
+    animation-delay: calc(var(--section-enter-stagger) * 4);
+  }
+
+  .section--enter > *:nth-child(5) {
+    animation-delay: calc(var(--section-enter-stagger) * 5);
+  }
+
+  .section--enter > *:nth-child(6) {
+    animation-delay: calc(var(--section-enter-stagger) * 6);
+  }
+
+  .section--enter > *:nth-child(7) {
+    animation-delay: calc(var(--section-enter-stagger) * 7);
+  }
+
+  .section--enter > *:nth-child(8) {
+    animation-delay: calc(var(--section-enter-stagger) * 8);
+  }
+
+  .section--enter > *:nth-child(9) {
+    animation-delay: calc(var(--section-enter-stagger) * 9);
+  }
+
+  .section--enter > *:nth-child(10) {
+    animation-delay: calc(var(--section-enter-stagger) * 10);
+  }
+
+  .section--enter > *:nth-child(11) {
+    animation-delay: calc(var(--section-enter-stagger) * 11);
+  }
+
+  .section--enter > *:nth-child(12) {
+    animation-delay: calc(var(--section-enter-stagger) * 12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .section--enter > * {
+      animation: none;
+    }
+  }
+  
+  .section--hero {
+    text-align: center;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+  }
+  
+  .section--no-x {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .stack--mt-6 {
+    margin-top: var(--space-6);
+  }
+  
+  .text-lead--accent {
+    margin: 0 0 var(--space-6);
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: var(--font-medium);
+    color: var(--color-primary);
+  }
+  
+  /* ——— Typography ——— */
+  .heading-1 {
+    margin: 0 0 var(--space-6);
+    font-size: 1.875rem;
+    line-height: 1.2;
+    font-weight: var(--font-bold);
+    color: var(--color-heading);
+  }
+  
+  .heading-2 {
+    margin: 0 0 var(--space-4);
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: var(--font-medium);
+    color: var(--color-heading);
+  }
+  
+  .heading-2--mb-6 {
+    margin-bottom: var(--space-6);
+  }
+  
+  .heading-2--mb-2 {
+    margin-bottom: var(--space-2);
+  }
+  
+  .heading-3 {
+    margin: 0 0 var(--space-4);
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+  }
+  
+  .heading-3--package {
+    margin: 0 0 var(--space-2);
+    font-size: 1.125rem;
+    line-height: 1;
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+  }
+  
+  .heading-3--package-sm {
+    margin: 0 0 var(--space-2);
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+  }
+  
+  .heading-3--gift {
+    margin: 0 0 var(--space-2);
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-lead {
+    margin: 0 0 var(--space-6);
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: var(--font-medium);
+    color: var(--color-heading);
+  }
+  
+  .text-body {
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  .text-body--mb-6 {
+    margin-bottom: var(--space-6);
+  }
+  
+  .text-body--mb-4 {
+    margin-bottom: var(--space-4);
+  }
+  
+  .text-accent {
+    color: var(--color-primary);
+  }
+  
+  .text-accent--bold {
+    color: var(--color-primary);
+    font-weight: var(--font-bold);
+  }
+  
+  .text-orange {
+    color: var(--color-accent);
+  }
+  
+  .text-white-strong {
+    color: var(--color-heading);
+    font-weight: var(--font-bold);
+  }
+  
+  .text-emphasis {
+    font-weight: var(--font-medium);
+  }
+  
+  .text-small {
+    font-size: 0.875rem;
+  }
+  
+  .text-xs {
+    font-size: 0.75rem;
+  }
+  
+  .text-loader {
+    margin: 0 0 var(--space-2);
+    text-align: center;
+    font-size: 0.875rem;
+  }
+  
+  .text-progress {
+    margin: 0 0 0 var(--space-2);
+    font-size: 0.875rem;
+    color: var(--color-primary);
+  }
+  
+  .font-bold {
+    font-weight: var(--font-bold);
+  }
+  
+  /* ——— Components ——— */
+  .badge-age {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: var(--font-bold);
+  }
+  
+  .callout {
+    margin: 0 0 var(--space-6);
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+  
+  .grid {
+    display: grid;
+  }
+  
+  .grid--1 {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  
+  .grid--1-gap-3 {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  
+  .grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+  
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .stack--3 {
+    gap: var(--space-3);
+  }
+  
+  .stack--mb-6 {
+    margin-bottom: var(--space-6);
+  }
+  
+  .btn {
+    cursor: pointer;
+    border: none;
+    font: inherit;
+    transition: var(--transition);
+  }
+  
+  .btn:hover {
+    transform: scale(1.03);
+  }
+  
+  .btn--primary {
+    display: block;
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 0 var(--space-3);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: #fff;
+    font-weight: var(--font-medium);
+    border: 2px solid var(--color-primary);
+  }
+  
+  .btn--primary-lg {
+    min-height: 3.5rem;
+    font-size: 1.25rem;
+  }
+  
+  .btn--primary-sm {
+    min-height: 3rem;
+    text-align: center;
+  }
+  
+  .btn--primary-left {
+    text-align: left;
+    padding: var(--space-2) var(--space-3);
+    min-height: auto;
+  }
+  
+  .btn--card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: #fff;
+    overflow: hidden;
+  }
+  
+  .btn--card .btn__label {
+    padding: var(--space-2);
+    text-align: center;
+    font-weight: var(--font-medium);
+    color: #fff;
+  }
+  
+  .btn--card img {
+    display: block;
+    width: 100%;
+  }
+  
+  .btn__emoji {
+    padding-top: var(--space-2);
+    text-align: center;
+    font-size: 2.25rem;
+    line-height: 1;
+  }
+  
+  .img-rounded {
+    border-radius: var(--radius-md);
+  }
+  
+  .img-rounded--mb-4 {
+    margin-bottom: var(--space-4);
+  }
+  
+  .img-rounded--mb-6 {
+    margin-bottom: var(--space-6);
+  }
+  
+  .testimonial {
+    border-left: 3px solid var(--color-primary);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+  }
+  
+  .testimonial__meta {
+    margin-bottom: var(--space-3);
+  }
+  
+  .testimonial__stars {
+    font-size: 0.875rem;
+  }
+  
+  .testimonial__name {
+    font-weight: var(--font-medium);
+    color: var(--color-heading);
+  }
+  
+  .video-embed {
+    position: relative;
+    padding-top: 56.25%;
+    margin-bottom: var(--space-4);
+  }
+  
+  .video-embed iframe {
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .progress {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+  
+  .progress__track {
+    flex: 1;
+    height: 0.75rem;
+    border-radius: var(--radius-full);
+    background: var(--color-track);
+    overflow: hidden;
+  }
+  
+  .progress__fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+  }
+  
+  .package-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+  }
+  
+  .package-card--row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  
+  .package-card--row .package-card__thumb {
+    flex: 0 0 50%;
+    max-width: 10rem;
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius-md);
+    object-fit: contain;
+  }
+  
+  .package-card__body p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .price-pill {
+    display: inline-flex;
+    margin-top: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    background: var(--color-badge);
+  }
+  
+  .gift-row {
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-start;
+  }
+  
+  .gift-row__icon {
+    flex: none;
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1;
+    font-weight: var(--font-bold);
+    color: var(--color-gift-muted);
+  }
+  
+  .pricing-box {
+    margin-bottom: var(--space-6);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    text-align: center;
+    background: var(--color-banner-bg);
+  }
+  
+  .pricing-box__ribbon {
+    width: 100%;
+    padding: var(--space-2);
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: var(--font-bold);
+  }
+  
+  .pricing-box__body {
+    padding: var(--space-3);
+    color: var(--color-on-light);
+  }
+  
+  .pricing-box__body p {
+    margin: 0.25rem 0;
+  }
+  
+  .price-strike {
+    margin: 0;
+    font-size: 1.875rem;
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    text-decoration: line-through;
+  }
+  
+  .price-live {
+    margin: 0;
+    font-size: 1.875rem;
+    font-weight: var(--font-bold);
+    color: var(--color-success-dark);
+  }
+  
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 4rem;
+    padding: 0 var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-success);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: var(--font-bold);
+    text-decoration: none;
+    box-shadow: var(--shadow-cta-green);
+    transition: var(--transition);
+    position: relative;
+  }
+  
+  .cta-link:hover {
+    transform: scale(1.03);
+  }
+  
+  .info-card {
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    text-align: center;
+  }
+  
+  .info-card h2 {
+    margin: 0 0 var(--space-2);
+    font-size: inherit;
+    font-weight: var(--font-medium);
+    color: var(--color-heading);
+  }
+  
+  .info-card p {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .sticky-bottom {
+    position: sticky;
+    bottom: var(--space-6);
+  }
+  
+     </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="site-header__main">
+        <div class="site-header__logo">
+          Rasa
+          <span>Terhubung</span>
+        </div>
+      </div>
+      <div class="site-header__progress" id="headerProgress" hidden>
+        <div class="site-header__progress-track">
+          <div
+            class="site-header__progress-fill"
+            id="headerProgressFill"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          ></div>
+        </div>
+      </div>
+    </header>
+    <section class="section section--hero">
+      <div style="font-size: 5rem;">🔞</div>
+      <h1 class="heading-1">
+        7 Detik Yang Mengubahmu Memandang Hubungan!
+        <h2 class="heading-2 heading-2--mb-6">
+        Anda dilarang masuk jika berusia dibawah 18 tahun!
+      </h2>
+      </h1>
+      <button class="btn btn--primary btn--primary-lg">
+        👉 Saya Sudah Berusia 18+
+      </button>
+    </section>
+
+<!-- 2. Intent Discovery -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Apa yang paling ingin Anda capai bersama pasangan? 💛
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">
+          Saya ingin lebih memahami apa yang membuat pasangan nyaman dan terbuka
+        </button>
+        <button class="btn btn--primary">
+          Saya ingin momen kami terasa lebih hangat dan bermakna
+        </button>
+        <button class="btn btn--primary">
+          Saya ingin pasangan merasa lebih didengar dan dekat dengan saya
+        </button>
+        <button class="btn btn--primary">
+          Saya ingin belajar cara komunikasi yang lebih baik soal kebutuhan kami
+        </button>
+      </div>
+    </section>
+
+    <!-- 3. Self Assessment -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Seberapa percaya diri Anda dalam membangun kedekatan dengan pasangan saat ini?
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Cukup percaya diri 😊</button>
+        <button class="btn btn--primary">Lumayan, tapi masih ingin lebih baik 😅</button>
+        <button class="btn btn--primary">Jujur, saya sering tidak tahu harus mulai dari mana 🤔</button>
+      </div>
+    </section>
+
+    <!-- 4. Pain Point -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Apa yang paling sering jadi tantangan dalam kedekatan Anda berdua?
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Sulit memulai obrolan tentang perasaan atau kebutuhan 😥</button>
+        <button class="btn btn--primary">Tidak yakin cara menunjukkan perhatian dengan tepat 😕</button>
+        <button class="btn btn--primary">Terasa rutin dan kurang momen berkualitas 😐</button>
+        <button class="btn btn--primary">Komunikasi sering berakhir salah paham 😶</button>
+        <button class="btn btn--primary">Belum ada masalah besar, tapi ingin lebih baik lagi 😌</button>
+      </div>
+    </section>
+
+    <!-- 5. Awareness -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Apakah Anda tahu bahwa kedekatan emosional sering jadi <span class="text-accent">kunci utama keintiman yang sehat?</span>
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Ya, saya sudah paham itu 🙂</button>
+        <button class="btn btn--primary">Sedikit tahu, tapi belum tahu cara praktiknya 🤔</button>
+        <button class="btn btn--primary">Belum pernah memikirkan ini sebelumnya 😅</button>
+      </div>
+    </section>
+
+    <!-- 6. Education -->
+    <section class="section">
+      <h2 class="heading-2">
+        Pernah Dengar Tentang Ilmu Hitam Suami - Kunci Hipnotis 7 Detik Merangsang Wanita??
+      </h2>
+      <img
+        src="gambar.jpeg"
+        alt="gambar"
+        class="img-rounded img-rounded--mb-6"
+      />
+      <p class="callout">
+        <strong class="font-bold">Dengan Ilmu Hitam Hipnotis 7 Detik ini bisa membuatmu memiliki kuasa atas dia dan membuatnya terangsang bahkan hanya dari pesan WA saja.</strong>
+      </p>
+      <div class="grid grid--1-gap-3 sticky-bottom">
+        <button
+          class="btn btn--primary"
+        >
+          Saya Mengerti 👉
+        </button>
+      </div>
+    </section>
+
+    <!-- 7. Curiosity -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Pernah merasa hubungan Anda sudah baik, tapi yakin masih ada level kedekatan yang belum tercapai?
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Ya, dan itu cukup membuat saya penasaran 🤔</button>
+        <button class="btn btn--primary">Pernah terpikir seperti itu 😅</button>
+        <button class="btn btn--primary">Belum pernah memikirkannya</button>
+      </div>
+    </section>
+
+    <!-- 8. Belief Shift -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Menurut Anda, apakah Ilmu Hitam ini bisa dipelajari oleh siapa saja?
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Ya, pasti bisa 💛</button>
+        <button class="btn btn--primary">Mungkin saja 🤔</button>
+        <button class="btn btn--primary">Saya masih kurang yakin</button>
+      </div>
+    </section>
+
+    <!-- 9. Social Proof Belief -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Bayangkan pasangan Anda menjadi jauh lebih terbuka dan menikmati setiap momen bersama Anda...
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Ini yang saya butuhkan 😊</button>
+        <button class="btn btn--primary">Boleh juga</button>
+        <button class="btn btn--primary">Hmm aku tidak yakin</button>
+      </div>
+    </section>
+
+    <!-- 10. Future Pacing -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Bayangkan pasangan Anda merasa benar-benar nyaman dan selalu ingin berbagi cerita dengan Anda... bagaimana perasaan Anda?
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Itu impian saya 💛</button>
+        <button class="btn btn--primary">Pasti hubungan kami jauh lebih intim ❤️</button>
+        <button class="btn btn--primary">Saya sangat ingin merasakan itu</button>
+      </div>
+    </section>
+
+    <!-- 11. Commitment -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Apakah Anda serius ingin mempelajari "Kunci Hipnotis 7 Detik Merangsang Wanita" ini dan langsung bisa dipraktikkan malam ini?
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Ya, saya serius 🔥</button>
+        <button class="btn btn--primary">Saya tertarik dan ingin tahu lebih lanjut</button>
+        <button class="btn btn--primary">Masih pikir-pikir dulu</button>
+      </div>
+    </section>
+
+    <!-- 12. Preview + Preview Reaction -->
+    <section class="section">
+      <h2 class="heading-2">
+        Baca! 😊 Lihat Sendiri Bagaimana Materi Ini Diajarkan…
+      </h2>
+      <p class="text-center text-body text-body--mb-6">
+        Ini baru <strong class="text-white-strong">satu di antara</strong> isi halaman dari
+        <strong class="text-white-strong">panduan lengkap</strong> yang akan Anda kuasai...
+      </p>
+      <div class="">
+        <img
+  src="ebook.jpeg"
+  alt="Contoh halaman ebook"
+  style="
+    width: 100%;
+    max-width: 1280px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  "
+/>
+      </div>
+      <p class="text-lead text-center">
+        Bagaimana menurut Anda?
+      </p>
+      <div class="grid grid--1-gap-3">
+        <button class="btn btn--primary track-content">Sangat menarik 😊</button>
+        <button class="btn btn--primary track-content">Saya ingin mencoba ilmunya</button>
+        <button class="btn btn--primary track-content">Saya penasaran lanjutannya</button>
+      </div>
+    </section>
+
+    <!-- 13. Desire Amplification -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Jika pasangan jadi lebih terbuka, lebih nyaman, dan lebih sering menunjukkan kedekatan kepada Anda...
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Hidup saya akan berubah total 💛</button>
+        <button class="btn btn--primary">Hubungan kami pasti jauh lebih bahagia ❤️</button>
+        <button class="btn btn--primary">Saya sangat ingin itu terjadi</button>
+      </div>
+    </section>
+
+    <!-- 14. Confidence Framing -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Bayangkan orang pertama yang Anda bagikan cerita sukses setelah menerapkan ilmu ini...
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Saya akan rekomendasikan ke semua orang</button>
+        <button class="btn btn--primary">Saya yakin ini membantu banyak orang</button>
+        <button class="btn btn--primary">Saya semakin ingin cepat mempelajari</button>
+      </div>
+    </section>
+
+    <!-- 15. Emotional Connection -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Apa yang paling Anda inginkan dari hubungan Anda dengan pasangan?
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Pasangan merasa benar-benar dimengerti oleh saya 💛</button>
+        <button class="btn btn--primary">Kedekatan yang membuat hubungan makin erat ❤️</button>
+        <button class="btn btn--primary">Kepercayaan diri tinggi dalam membangun kedekatan 😊</button>
+        <button class="btn btn--primary">Semua di atas 😍</button>
+      </div>
+    </section>
+
+    <!-- 16. CTA Qualification -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Apakah Anda siap mempelajari panduan lengkap "Kunci Hipnotis 7 Detik Merangsang Wanita" yang sudah terbukti efektif?
+      </h2>
+      <div class="grid grid--1">
+        <button class="btn btn--primary">Ya, saya siap — tunjukkan panduannya 🔥</button>
+        <button class="btn btn--primary">Saya mau lihat detailnya dulu</button>
+      </div>
+    </section>
+
+    <!-- 17. Loader -->
+    <section id="loader" class="section">
+      <h2 class="heading-2">
+        Sedang menganalisis jawaban Anda...
+      </h2>
+      <p id="progressStage" class="text-loader">
+        Mengumpulkan data...
+      </p>
+      <div class="progress">
+        <div class="progress__track">
+          <div
+            id="progressBar"
+            class="progress__fill"
+            style="width: 0%"
+          ></div>
+        </div>
+
+        <p id="progressText" class="text-progress">0%</p>
+      </div>
+    </section>
+
+    <!-- 18. Final Offer Bridge -->
+    <section class="section">
+      <h2 class="heading-2 heading-2--mb-6">
+        Berdasarkan jawaban Anda, inilah rekomendasi spesial yang kami tawarkan 💛
+      </h2>
+      <div class="grid grid--1 sticky-bottom">
+        <button class="btn btn--primary">
+          Lihat Penawaran Spesial 👉
+        </button>
+      </div>
+    </section>
+
+    <section class="section section--no-x">
+      <h2 class="heading-2">
+        Ilmu Hitam Suami - Kunci Hipnotis 7 Detik Merangsang Wanita 🔥
+      </h2>
+      <p class="text-center text-body text-body--mb-6">
+        Bongkar teknik sugesti dan komunikasi yang mampu membuat pasangan lebih terbuka, nyaman, dan merasakan koneksi yang jauh lebih intens dari biasanya 🔥
+      </p>
+      <h3 class="heading-3">
+        YANG AKAN ANDA DAPATKAN
+      </h3>
+
+      <div class="stack stack--3 stack--mb-6">
+        <div class="package-card">
+          <img
+            src="cover.jpeg"
+            alt="gambar"
+            class="img-rounded img-rounded--mb-4"
+          />
+          <div>
+            <h3 class="heading-3--package">
+              ILMU HITAM SUAMI
+            </h3>
+            <p>
+              <strong>Kunci Hipnotis 7 Detik Merangsang Wanita</strong> yang bisa Anda praktekkan sekarang agar pasangan terangsang & puas
+
+            </p>
+            <div
+              class="price-pill"
+            >
+              Senilai Rp199.000
+            </div>
+          </div>
+        </div>
+
+      <div
+        class="pricing-box"
+      >
+        <div class="pricing-box__ribbon">
+          CLAIM DISKON 92% SAAT INI
+        </div>
+        <div class="pricing-box__body">
+          <p>Total Harga</p>
+          <p class="text-emphasis">Ebook + Video Bapak Bapak</p>
+          <p class="price-strike">Rp199.000</p>
+          <p>Saat ini cuma</p>
+          <p class="price-live">Rp79.000</p>
+        </div>
+      </div>
+
+      <div class="cta-wiggle">
+        <a
+          href="https://rasaterhubung134.form.id/hipnotis"
+          class="cta-link"
+        >
+          Download Panduannya Sekarang!
+        </a>
+      </div>
+
+      <div class="stack stack--3 stack--mt-6">
+        <div class="testimonial">
+          <div class="testimonial__meta">
+            <div class="text-small">⭐⭐⭐⭐</div>
+            <div class="testimonial__name">Ri**a A***ad</div>
+          </div>
+          <p>
+            Sumpah Bang, ini gila sih! 😭🔥 Awalnya saya kira cuma teori biasa, ternyata efeknya benar-benar terasa. Baru praktik beberapa ilmu dari ebook ini, istri langsung lebih perhatian dan responsnya beda dari biasanya. Suasana jadi lebih hangat, komunikasi makin lancar, dan hubungan terasa jauh lebih dekat. Nggak nyesel beli, worth it banget! ❤️🙏
+          </p>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial__meta">
+            <div class="text-small">⭐⭐⭐⭐</div>
+            <div class="testimonial__name">Ind** R**i</div>
+          </div>
+          <p>
+            "Nggak nyangka sesimpel ini hasilnya bisa beda jauh. 😳🔥 Baru praktik beberapa halaman, respons istri jadi lebih positif dan hubungan terasa lebih harmonis. Terima kasih ilmunya, Bang!" 🙏
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h2>Privasi Aman 100%</h2>
+          <p>Materi bersifat rahasia dan hanya dapat diakses oleh pembeli.</p>
+        </div>
+
+        <div class="info-card">
+          <h2>
+            Akses instant melalui Email
+          </h2>
+          <p>
+            Kamu akan menerima akses langsung melalui email. Bisa langsung
+            praktek malam ini juga.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("section");
+        const lastSectionIndex = sections.length - 1;
+        const totalSteps = sections.length - 1;
+        const headerProgress = document.getElementById("headerProgress");
+        const headerProgressFill = document.getElementById("headerProgressFill");
+        let currentSectionIndex = 0;
+        let loaderInterval = null;
+
+        function updateHeader() {
+          const onFirstPage = currentSectionIndex === 0;
+
+          headerProgress.hidden = onFirstPage;
+          document.body.classList.toggle("has-header-progress", !onFirstPage);
+          if (!onFirstPage) {
+            const percent = Math.min(
+              100,
+              Math.round((currentSectionIndex / totalSteps) * 100),
+            );
+            headerProgressFill.style.width = percent + "%";
+            headerProgressFill.setAttribute("aria-valuenow", String(percent));
+          }
+        }
+
+        function clearLoader() {
+          if (loaderInterval) {
+            clearInterval(loaderInterval);
+            loaderInterval = null;
+          }
+        }
+
+        sections.forEach((section, index) => {
+          if (index !== 0) {
+            section.style.display = "none";
+          }
+        });
+        sections[0].classList.add("section--enter");
+
+        updateHeader();
+
+        function showSection(index, options) {
+          if (!sections[index]) return;
+
+          const skipTreasure = options && options.skipTreasure;
+
+          clearLoader();
+          sections.forEach((section, i) => {
+            if (i === index) {
+              section.style.display = "block";
+              section.classList.remove("section--enter");
+              void section.offsetWidth;
+              section.classList.add("section--enter");
+            } else {
+              section.style.display = "none";
+              section.classList.remove("section--enter");
+            }
+          });
+
+          currentSectionIndex = index;
+          updateHeader();
+
+          if (sections[index].id === "loader") {
+            startLoader(index);
+          }
+        }
+
+        function startLoader(currentIndex) {
+          const progressBar = document.getElementById("progressBar");
+          const progressText = document.getElementById("progressText");
+          const progressStage = document.getElementById("progressStage");
+
+          progressBar.style.width = "0%";
+          progressText.textContent = "0%";
+          progressStage.textContent = "Mengumpulkan data...";
+
+          let progress = 0;
+
+          loaderInterval = setInterval(() => {
+            let increment;
+
+            if (progress < 35) {
+              progressStage.textContent = "Mengumpulkan data...";
+              increment = Math.random() * 6 + 4;
+            } else if (progress < 72) {
+              progressStage.textContent = "Menganalisis jawaban...";
+              increment = Math.random() * 3 + 1.5;
+            } else if (progress < 100) {
+              progressStage.textContent = "Menyusun rekomendasi terbaik...";
+              increment = Math.random() * 1 + 0.3;
+            }
+
+            progress += increment;
+
+            if (progress >= 100) {
+              progress = 100;
+
+              progressBar.style.width = "100%";
+              progressText.textContent = "100%";
+              progressStage.textContent = "Menyusun rekomendasi terbaik...";
+
+              clearLoader();
+
+              setTimeout(() => {
+                showSection(currentIndex + 1);
+              }, 600);
+
+              return;
+            }
+
+            progressBar.style.width = progress + "%";
+            progressText.textContent = Math.round(progress) + "%";
+          }, 120);
+        }
+
+        sections.forEach((section, index) => {
+          const buttons = section.querySelectorAll("button");
+
+          buttons.forEach((button) => {
+            button.addEventListener("click", function () {
+
+              showSection(index + 1);
+            });
+          });
+        });
+
+        UTMS
+        const params = window.location.search;
+
+        if (params) {
+          document.querySelectorAll(".cta-link").forEach((link) => {
+            link.href += params;
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
